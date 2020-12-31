@@ -62,17 +62,21 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
         foreach ($products as $product) {
             $item = [];
             // Title.
-            $item['title'] = $product['name'];
+            $item['title'] = html_entity_decode($product['name'], ENT_QUOTES | ENT_XML1, 'UTF-8');
             // Link, guid
             $item['link'] = $this->url->link('product/product', 'product_id=' . $product['product_id']);
             // Created date.
             $item['pubDate'] = (new DateTime($product['date_available']))->format(DateTime::RFC822);
             // Description.
-            $item['description'] = $product['description'];
+            $item['description'] = html_entity_decode($product['description']);
             // Enclosure.
-            $item['enclosure'] = $this->model_tool_image->resize($product['image'], 300, 300);
-            $item['enclosure_length'] = filesize($this->getImgPathFromURL($item['enclosure']));
-            $item['enclosure_type'] = mime_content_type($this->getImgPathFromURL($item['enclosure'])) ?: 'image/jpeg';
+            $img_link = $this->model_tool_image->resize($product['image'], 300, 300);
+            $img_path = $this->getImgPathFromURL($img_link);
+            $item['enclosure'] = $img_link;
+            if (!empty($img_path) && is_file($img_path)) {
+                $item['enclosure_length'] = filesize($img_path);
+                $item['enclosure_type'] = mime_content_type($img_path);
+            }
             // Price.
             $item['price'] = round($product['price'], 2);
             // Check if product is on sale.
@@ -110,6 +114,19 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
     }
 
     private function getImgPathFromURL($url) {
-        return $_SERVER["DOCUMENT_ROOT"] . parse_url($url, PHP_URL_PATH);
+        $path = '';
+
+        if (empty($url)) {
+            return '';
+        }
+
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
+            $path = parse_url($url, PHP_URL_PATH);
+        }
+        else {
+            $path = str_replace($this->config->get('config_url'), "", $url);
+        }
+
+        return $_SERVER["DOCUMENT_ROOT"] . $path;
     }
 }
