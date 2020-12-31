@@ -66,7 +66,7 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
             // Link, guid
             $item['link'] = $this->url->link('product/product', 'product_id=' . $product['product_id']);
             // Created date.
-            $item['pubDate'] = $product['date_available'];
+            $item['pubDate'] = (new DateTime($product['date_available']))->format(DateTime::RFC822);
             // Description.
             $item['description'] = $product['description'];
             // Enclosure.
