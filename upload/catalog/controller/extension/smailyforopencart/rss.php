@@ -40,7 +40,7 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
             $data['store_url'] = $this->config->get('config_url');
         }
         // Build date.
-        $data['last_build_date'] = date('D, d M Y H:i:s');
+        $data['last_build_date'] = date(DateTime::RFC822);
         // Currency symbol.
         $data['currency'] = $this->session->data['currency'];
         // Filter for query.
