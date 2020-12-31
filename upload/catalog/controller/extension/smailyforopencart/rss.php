@@ -71,6 +71,8 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
             $item['description'] = $product['description'];
             // Enclosure.
             $item['enclosure'] = $this->model_tool_image->resize($product['image'], 300, 300);
+            $item['enclosure_length'] = filesize($item['enclosure']);
+            $item['enclosure_type'] = mime_content_type($item['enclosure']);
             // Price.
             $item['price'] = round($product['price'], 2);
             // Check if product is on sale.
