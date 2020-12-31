@@ -71,8 +71,8 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
             $item['description'] = $product['description'];
             // Enclosure.
             $item['enclosure'] = $this->model_tool_image->resize($product['image'], 300, 300);
-            $item['enclosure_length'] = filesize($item['enclosure']);
-            $item['enclosure_type'] = mime_content_type($item['enclosure']);
+            $item['enclosure_length'] = filesize($this->getImgPathFromURL($item['enclosure']));
+            $item['enclosure_type'] = mime_content_type($this->getImgPathFromURL($item['enclosure'])) ?: 'image/jpeg';
             // Price.
             $item['price'] = round($product['price'], 2);
             // Check if product is on sale.
@@ -107,5 +107,9 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
             }
         }
         return $id;
+    }
+
+    private function getImgPathFromURL($url) {
+        return '/var/www/html' . parse_url($url, PHP_URL_PATH);
     }
 }
