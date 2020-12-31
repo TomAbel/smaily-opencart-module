@@ -1,23 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <rss xmlns:smly="https://www.sendsmaily.net/schema/editor/rss.xsd" version="2.0">
-<channel>
-<title>Store</title>
-<link>{{ store_url }}</link>
-<description>Product Feed</description>
-<lastBuildDate>{{ last_build_date }}</lastBuildDate>
-{% for item in items %}
-    <item>
-    <title><![CDATA[ {{ item.title|raw }} ]]></title>
-    <link>{{ item.link }}</link>
-    <guid isPermaLink="True">{{ item.link }}</guid>
-    <pubDate>{{ item.pubDate }}</pubDate>
-    <description><![CDATA[ {{ item.description }} ]]></description>
-    <enclosure length="{{ item.enclosure_length }}" type="{{item.enclosure_type }}">{{ item.enclosure }}</enclosure>
-    <smly:price>{{ item.price }}{{ currency }}</smly:price>
-    {% if item.discount %}
-        <smly:old_price>{{ item.old_price }}{{ currency }}</smly:old_price>
-        <smly:discount>{{ item.discount }} % </smly:discount>
-    {% endif %}
-    </item>
-{% endfor %}
-</channel>
+    <channel>
+    <title>Store</title>
+    <link>{{ store_url }}</link>
+    <description>Product Feed</description>
+    <lastBuildDate>{{ last_build_date }}</lastBuildDate>
+    {% for item in items %}
+        <item>
+            <title><![CDATA[ {{ item.title|raw }} ]]></title>
+            <link>{{ item.link }}</link>
+            <guid isPermaLink="True">{{ item.link }}</guid>
+            <pubDate>{{ item.pubDate }}</pubDate>
+            <description><![CDATA[ {{ item.description }} ]]></description>
+            <enclosure length="{{ item.enclosure_length }}" type="{{item.enclosure_type }}">{{ item.enclosure }}</enclosure>
+            <smly:price>{{ item.price }}{{ currency }}</smly:price>
+            {% if item.discount %}
+                <smly:old_price>{{ item.old_price }}{{ currency }}</smly:old_price>
+                <smly:discount>{{ item.discount }} % </smly:discount>
+            {% endif %}
+        </item>
+    {% endfor %}
+    </channel>
 </rss>
