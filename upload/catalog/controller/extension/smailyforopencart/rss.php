@@ -62,13 +62,13 @@ class ControllerExtensionSmailyForOpencartRss extends Controller {
         foreach ($products as $product) {
             $item = [];
             // Title.
-            $item['title'] = $product['name'];
+            $item['title'] = html_entity_decode($product['name']);
             // Link, guid
             $item['link'] = $this->url->link('product/product', 'product_id=' . $product['product_id']);
             // Created date.
             $item['pubDate'] = $product['date_available'];
             // Description.
-            $item['description'] = $product['description'];
+            $item['description'] = html_entity_decode($product['description']);
             // Enclosure.
             $item['enclosure'] = $this->model_tool_image->resize($product['image'], 300, 300);
             // Price.

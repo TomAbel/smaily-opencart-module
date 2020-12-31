@@ -6,11 +6,11 @@
 <lastBuildDate>{{ last_build_date }}</lastBuildDate>
 {% for item in items %}
     <item>
-    <title><![CDATA[ {{ item.title|raw }} ]]></title>
+    <title><![CDATA[ {{ item.title|raw }} ]]> </title>
     <link>{{ item.link }}</link>
     <guid isPermalink="True">{{ item.link }}</guid>
     <pubDate>{{ item.pubDate }}</pubDate>
-    <description><![CDATA[ {{ item.description }} ]]></description>
+    <description><![CDATA[ {{ item.description|raw }} ]]> </description>
     <enclosure>{{ item.enclosure }}</enclosure>
     <smly:price>{{ item.price }}{{ currency }}</smly:price>
     {% if item.discount %}
