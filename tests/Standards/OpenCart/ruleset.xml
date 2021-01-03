@@ -2,5 +2,19 @@
 <ruleset name="OpenCart">
     <description>The Code Sniffer rule set for OpenCart</description>
     <!-- As of 03.01.2021 defined by https://github.com/opencart/opencart/wiki/Coding-standards -->
+    <!-- Check for whitespace after lines of code and checks for spaces/indents on empty lines -->
+    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing"/>
+    <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace"/>
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing"/>
+    <rule ref="Squiz.WhiteSpace.MemberVarSpacing"/>
+    <rule ref="Squiz.WhiteSpace.OperatorSpacing"/>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <severity>1</severity>
+        <type>warning</type>
+    </rule>
 
+
+    <!-- exclude the actual tests directory from being tested! -->
+    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
 </ruleset>
