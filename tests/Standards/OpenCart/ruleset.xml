@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="OpenCart">
+    <description>The Code Sniffer rule set for OpenCart</description>
+    <!-- As of 03.01.2021 defined in https://github.com/opencart/opencart/wiki/Coding-standards -->
+
+</ruleset>

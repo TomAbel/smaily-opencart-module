@@ -9,5 +9,8 @@
       "email": "info@smaily.com"
     }
   ],
-  "minimum-stability": "stable"
+  "minimum-stability": "stable",
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*"
+  }
 }

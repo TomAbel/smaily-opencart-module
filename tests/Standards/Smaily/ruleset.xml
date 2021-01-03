@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<ruleset name="Smaily">
+    <description>Smaily PHPCS ruleset for use in development</description>
+</ruleset>
